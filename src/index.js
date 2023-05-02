@@ -19,9 +19,8 @@ function clearCountryList() {
 }
 
 function clearCountryInfo() {
-    refs.countryInfoEl.innerHTML = '';
-  }
-  
+  refs.countryInfoEl.innerHTML = '';
+}
 
 function onInput(event) {
   event.preventDefault();
@@ -58,16 +57,16 @@ function onInput(event) {
 function renderCountryInfo(country) {
   clearCountryList();
   const countryInfoMarkup = `
-<li>
-<img src="${country.flag}" alt="${country.name}" width="500">
-<h2 class="country_title">${country.name.official}</h2>
-<p class="country_capital"><span>Capital:</span> ${country.capital}</p>
-<p class="country_population"><span>Population:</span> ${country.population}</p>
-<p class="country_lang"><span>Languages:</span> ${country.languages
-    .map(lang => lang.name)
-    .join(' ')}</p>
-
-</li>`;
+  <li>
+  <img src="${country.flags.svg}" alt="${country.name}" width="100">
+  <h2 class="country_title">${country.name.official}</h2>
+  <p class="country_capital"><span>Capital:</span> ${country.capital}</p>
+  <p class="country_population"><span>Population:</span> ${
+    country.population
+  }</p>
+  <p class="country_lang"><span>Languages:</span> ${Object.values(
+    country.languages
+  ).join(', ')}</p>
+  </li>`;
   refs.countryInfoEl.innerHTML = countryInfoMarkup;
 }
-
