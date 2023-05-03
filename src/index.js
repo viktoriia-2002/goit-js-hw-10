@@ -38,7 +38,8 @@ function onInput(event) {
       if (countries.length === 1) {
         renderCountryInfo(countries[0]);
       } else if (countries.length > 1 && countries.length <= 10) {
-        renderCountriesList(countries);
+        refs.countryInfoEl.innerHTML = '';
+        refs.countryListEl.innerHTML = renderCountriesList(countries);
       } else {
         clearCountryList();
         clearCountryInfo();
@@ -69,4 +70,17 @@ function renderCountryInfo(country) {
   ).join(', ')}</p>
   </li>`;
   refs.countryInfoEl.innerHTML = countryInfoMarkup;
+}
+
+function renderCountriesList(countries) {
+  return countries
+    .map(
+      country => `
+        <li>
+          <img src="${country.flags.svg}" alt="${country.name}" width="50">
+          <span>${country.name.official}</span>
+        </li>
+      `
+    )
+    .join('');
 }
